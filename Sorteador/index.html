@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Sorteador</title>
+</head>
+<body>
+    <label for="inicio">Do numero:</label>
+    <input type="number" id="inicio">
+    <br><br>
+    <label for="fim">Ao numero:</label>
+    <input type="number" id="fim">
+    <br><br>
+    <button onclick="sortear()">Sortear</button>
+    <br><br>
+    <label for="resultado">Resultado:</label>
+    <input type="number" id="resultado" disabled>
+    <br><br>
+    <script>
+      function sortear() {
+        const inicio = parseInt(document.querySelector('#inicio').value);
+        const fim = parseInt(document.querySelector('#fim').value);
+        const resultado = Math.floor(Math.random() * (fim - inicio + 1)) + inicio;
+        document.querySelector('#resultado').value = resultado;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Notas</title>
+</head>
+<body>
+	<style>
+
+body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f5f5dc;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      padding: 20px;
+      background-color: #c2a527;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    label {
+      margin-top: 10px;
+    }
+    input[type="text"], input[type="number"] {
+      margin-left: 10px;
+      width: 70px;
+    }
+    input[type="submit"] {
+      margin-top: 20px;
+    }
+    #resultado {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      padding: 20px;
+      background-color: #b69730;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .resultado {
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+    }
+    .aprovado {
+      background-color: green;
+    }
+    .recuperacao {
+      background-color: blue;
+    }
+    .reprovado {
+      background-color: red;
+    }
+	  </style>
+	</head>
+	<body>
+	  <form>
+		<label for="nome">Nome:</label>
+		<input type="text" id="nome" name="nome">
+	
+		<label for="nota1">Nota 1:</label>
+		<input type="number" id="nota1" name="nota1" min="0" max="10">
+	
+		<label for="nota2">Nota 2:</label>
+		<input type="number" id="nota2" name="nota2" min="0" max="10">
+	
+		<label for="nota3">Nota 3:</label>
+		<input type="number" id="nota3" name="nota3" min="0" max="10">
+	
+		<label for="nota4">Nota 4:</label>
+		<input type="number" id="nota4" name="nota4" min="0" max="10">
+	
+		<input type="submit" value="Calcular Média">
+	  </form>
+	
+	  <div id="resultado"></div>
+	
+	  <script>
+		const form = document.querySelector('form');
+		const resultado = document.querySelector('#resultado');
+	
+		form.addEventListener('submit', (event) => {
+		  event.preventDefault();
+		  const nome = document.querySelector('#nome').value;
+		  const nota1 = Number(document.querySelector('#nota1').value);
+		  const nota2 = Number(document.querySelector('#nota2').value);
+		  const nota3 = Number(document.querySelector('#nota3').value);
+		  const nota4 = Number(document.querySelector('#nota4').value);
+		  const media = (nota1 + nota2 + nota3 + nota4) / 4;
+		  let situacao;
+		  let cor;
+	
+		  if (media >= 6) {
+			situacao = 'APROVADO';
+			cor = 'aprovado';
+		  } else if (media < 2) {
+			situacao = 'REPROVADO';
+			cor = 'reprovado';
+		  } else {
+			situacao = 'RECUPERAÇÃO';
+			cor = 'recuperacao';
+		  }
+	
+		  resultado.innerHTML = `
+			<div class="resultado ${cor}">
+			  <p>Aluno: ${nome}</p>
+			  <p>Média: ${media.toFixed(2)}</p>
+			  <p>Situação: ${situacao}</p>
+			</div>
+		  `;
+		});
+	</script>
+</body>
+</html>
